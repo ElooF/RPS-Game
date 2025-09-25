@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPS Game & Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-slate-100" style="font-family: 'Inter', sans-serif;">
+
+    <div class="min-h-screen flex items-center justify-center p-4">
+
+        
+        <div id="home-page" class="max-w-lg mx-auto p-6 md:p-8 bg-slate-800 rounded-3xl shadow-2xl transition-all duration-500 ease-in-out w-full text-center flex flex-col items-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-sky-400">Welcome!</h1>
+            <p class="text-lg md:text-xl text-slate-300 mb-8">Play Rock, Paper, Scissors and more. Create an account to get started.</p>
+            <div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
+                <button onclick="showPage('login-page')" class="bg-gradient-to-r from-indigo-500 to-sky-500 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-sky-500 focus:ring-opacity-50 w-full sm:w-auto">Login</button>
+                <button onclick="showPage('register-page')" class="bg-slate-700 text-slate-300 font-bold py-3 px-6 rounded-full shadow-md transition-transform transform hover:scale-105 hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-500 w-full sm:w-auto">Register</button>
+            </div>
+        </div>
+
+        
+        <div id="login-page" class="max-w-lg mx-auto p-6 md:p-8 bg-slate-800 rounded-3xl shadow-2xl transition-all duration-500 ease-in-out w-full hidden">
+            <h2 class="text-3xl font-bold mb-6 text-center text-indigo-400">Login</h2>
+            <form id="login-form" class="space-y-4">
+                <div>
+                    <label for="login-email" class="block text-sm font-medium text-slate-400">Email</label>
+                    <input type="email" id="login-email" name="email" required class="mt-1 block w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500">
+                </div>
+                <div>
+                    <label for="login-password" class="block text-sm font-medium text-slate-400">Password</label>
+                    <input type="password" id="login-password" name="password" required class="mt-1 block w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500">
+                </div>
+                <div class="text-red-400 text-sm mt-2" id="login-error-message"></div>
+                <div class="flex justify-between items-center pt-4">
+                    <button type="submit" class="bg-gradient-to-r from-indigo-500 to-sky-500 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-sky-500 focus:ring-opacity-50 w-full mr-2">Login</button>
+                    <button type="button" onclick="showPage('home-page')" class="bg-slate-700 text-slate-300 font-bold py-3 px-6 rounded-full shadow-md transition-transform transform hover:scale-105 hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-500">Back</button>
+                </div>
+            </form>
+        </div>
+
+        
+        <div id="register-page" class="max-w-lg mx-auto p-6 md:p-8 bg-slate-800 rounded-3xl shadow-2xl transition-all duration-500 ease-in-out w-full hidden">
+            <h2 class="text-3xl font-bold mb-6 text-center text-sky-400">Register</h2>
+            <form id="register-form" class="space-y-4">
+                <div>
+                    <label for="register-email" class="block text-sm font-medium text-slate-400">Email</label>
+                    <input type="email" id="register-email" name="email" required class="mt-1 block w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500">
+                </div>
+                <div>
+                    <label for="register-password" class="block text-sm font-medium text-slate-400">Password</label>
+                    <input type="password" id="register-password" name="password" required class="mt-1 block w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500">
+                </div>
+                <div class="text-red-400 text-sm mt-2" id="register-error-message"></div>
+                <div class="flex justify-between items-center pt-4">
+                    <button type="submit" class="bg-gradient-to-r from-indigo-500 to-sky-500 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-sky-500 focus:ring-opacity-50 w-full mr-2">Register</button>
+                    <button type="button" onclick="showPage('home-page')" class="bg-slate-700 text-slate-300 font-bold py-3 px-6 rounded-full shadow-md transition-transform transform hover:scale-105 hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-500">Back</button>
+                </div>
+            </form>
+        </div>
+
+        
+        <div id="game-page" class="max-w-lg mx-auto p-6 md:p-8 bg-slate-800 rounded-3xl shadow-2xl transition-all duration-500 ease-in-out w-full hidden text-center">
+            <h2 class="text-3xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-indigo-400">Rock Paper Scissors</h2>
+            <p class="text-lg text-slate-300 mb-6">Play against the AI!</p>
+
+           
+            <div class="flex justify-center gap-4 mb-8">
+                <button type="button" class="text-5xl p-6 rounded-2xl transition-all transform hover:scale-110 active:scale-95 shadow-md border-4 border-transparent hover:border-sky-400 bg-slate-700 hover:bg-slate-600" onclick="playGame('rock')">
+                    ✊
+                </button>
+                <button type="button" class="text-5xl p-6 rounded-2xl transition-all transform hover:scale-110 active:scale-95 shadow-md border-4 border-transparent hover:border-sky-400 bg-slate-700 hover:bg-slate-600" onclick="playGame('paper')">
+                    ✋
+                </button>
+                <button type="button" class="text-5xl p-6 rounded-2xl transition-all transform hover:scale-110 active:scale-95 shadow-md border-4 border-transparent hover:border-sky-400 bg-slate-700 hover:bg-slate-600" onclick="playGame('scissors')">
+                    ✌️
+                </button>
+            </div>
+
+            <div class="text-center space-y-4 mb-8">
+                <p id="result-message" class="text-lg font-semibold text-slate-300">Make your move!</p>
+                <div class="flex justify-center items-center gap-6">
+                    <div class="flex flex-col items-center">
+                        <p class="text-sm text-slate-400">You Chose:</p>
+                        <p id="player-choice" class="text-4xl text-sky-400"></p>
+                    </div>
+                    <div class="text-5xl font-bold text-slate-400">VS</div>
+                    <div class="flex flex-col items-center">
+                        <p class="text-sm text-slate-400">AI Chose:</p>
+                        <p id="ai-choice" class="text-4xl text-indigo-400"></p>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="flex justify-center items-center gap-8 mb-8 text-xl font-bold">
+                <div>
+                    <p class="text-slate-400">Player</p>
+                    <p id="player-score" class="text-sky-400 text-3xl">0</p>
+                </div>
+                <div>
+                    <p class="text-slate-400">AI</p>
+                    <p id="ai-score" class="text-indigo-400 text-3xl">0</p>
+                </div>
+            </div>
+
+           <button onclick="resetGame()" class="bg-slate-700 text-slate-300 font-bold py-3 px-6 rounded-full shadow-md transition-transform transform hover:scale-105 hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-500 mr-2">Reset Game</button>
+            <button id="logout-btn" type="button" class="bg-slate-700 text-slate-300 font-bold py-3 px-6 rounded-full shadow-md transition-transform transform hover:scale-105 hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-500">Logout</button>
+        </div>
+    </div>
+
+    <script>
+        const pages = ['home-page', 'login-page', 'register-page', 'game-page'];
+        let playerScore = 0;
+        let aiScore = 0;
+
+       
+        function getUserDatabase() {
+            return JSON.parse(localStorage.getItem('userDatabase') || '{}');
+        }
+        function setUserDatabase(db) {
+            localStorage.setItem('userDatabase', JSON.stringify(db));
+        }
+
+        function showPage(pageId) {
+            pages.forEach(id => {
+                const page = document.getElementById(id);
+                if (page) {
+                    page.classList.add('hidden');
+                }
+            });
+            const currentPage = document.getElementById(pageId);
+            if (currentPage) {
+                currentPage.classList.remove('hidden');
+            }
+        }
+
+        document.getElementById('register-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const errorMessage = document.getElementById('register-error-message');
+
+            const userDatabase = getUserDatabase();
+            if (userDatabase[email]) {
+                errorMessage.textContent = 'User already exists!';
+            } else {
+                userDatabase[email] = { password: password };
+                setUserDatabase(userDatabase);
+                errorMessage.textContent = '';
+                showPage('login-page');
+            }
+        });
+
+        document.getElementById('login-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const errorMessage = document.getElementById('login-error-message');
+
+            const userDatabase = getUserDatabase();
+            if (userDatabase[email] && userDatabase[email].password === password) {
+                errorMessage.textContent = '';
+                localStorage.setItem('loggedInUser', email); // Save login state
+                showPage('game-page');
+                resetGame();
+            } else {
+                errorMessage.textContent = 'Invalid email or password.';
+            }
+        });
+
+        function playGame(playerChoice) {
+            const choices = ['rock', 'paper', 'scissors'];
+            const aiChoice = choices[Math.floor(Math.random() * choices.length)];
+
+            document.getElementById('player-choice').textContent = playerChoice === 'rock' ? '✊' : playerChoice === 'paper' ? '✋' : '✌️';
+            document.getElementById('ai-choice').textContent = aiChoice === 'rock' ? '✊' : aiChoice === 'paper' ? '✋' : '✌️';
+
+            let resultMessage = '';
+            if (playerChoice === aiChoice) {
+                resultMessage = "It's a draw!";
+            } else if (
+                (playerChoice === 'rock' && aiChoice === 'scissors') ||
+                (playerChoice === 'paper' && aiChoice === 'rock') ||
+                (playerChoice === 'scissors' && aiChoice === 'paper')
+            ) {
+                resultMessage = "You win!";
+                playerScore++;
+            } else {
+                resultMessage = "You lose!";
+                aiScore++;
+            }
+
+            document.getElementById('result-message').textContent = resultMessage;
+            document.getElementById('player-score').textContent = playerScore;
+            document.getElementById('ai-score').textContent = aiScore;
+        }
+
+        function resetGame() {
+            playerScore = 0;
+            aiScore = 0;
+            document.getElementById('player-score').textContent = playerScore;
+            document.getElementById('ai-score').textContent = aiScore;
+            document.getElementById('result-message').textContent = "Game reset. Make your move!";
+            document.getElementById('player-choice').textContent = '';
+            document.getElementById('ai-choice').textContent = '';
+        }
+
+        
+        function logout() {
+            localStorage.removeItem('loggedInUser');
+            showPage('home-page');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.onclick = logout;
+            }
+
+           
+            const loggedInUser = localStorage.getItem('loggedInUser');
+            if (loggedInUser) {
+                showPage('game-page');
+                resetGame();
+            } else {
+                showPage('home-page');
+            }
+        });
+    </script>
+
+</body>
+
+</html>
